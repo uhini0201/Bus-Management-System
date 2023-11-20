@@ -1,0 +1,204 @@
+<!-- <!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="/css/styles2.css" th:href="@{/css/styles2_dash.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+		<div class="container">
+			<h2>Bus Dashboard</h2>
+			<div class="contentForm">
+				<table th:if="${buses} != null"
+				class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<td>Bus Id</td>
+						<td>Bus Number Plate</td>
+						<td>Bus Capacity</td>
+						<td>Booked Seats</td>
+						<td>Remaining Seats</td>
+						<td>Manage</td>
+					</tr>
+				</thead>
+				<tbody id="myTable">
+					<tr th:each="bus : ${buses}">
+                        <td th:text="${bus.getBusId()}"></td>
+                        <td th:text="${bus.getBusNumberPlate()}"></td>
+                        <td th:text="${bus.getBusCapacity()}"></td>
+                        <td th:text="${bus.getBookedSeats()}"></td>
+                        <td th:text="${bus.getRemainingSeats()}"></td>
+						<td><a th:href="@{/admin/updateBus (busId=${bus.getBusId()})}"
+							class="btn btn-primary">Update</a>
+							<a th:href="@{/admin/removeBus (busId=${bus.getBusId()})}"
+							class="btn btn-primary">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			
+		</div>
+	
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand me-2" href="#">
+                    <img src="./img/nribms-high-resolution-logo-black-on-transparent-background.png" height="35"
+                        alt="NRI BMS" loading="lazy" style="margin-top: -1px;" />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/panel">Home</a>
+                    </li>
+                    
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <div class="container">
+        <h1 class="display-3 d-flex justify-content-center mt-4 mb-2">Bus Dashboard</h1>
+        <div class="content d-flex justify-content-center">
+            <table th:if="${buses} != null" class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Bus ID</th>
+                        <th>Bus Number</th>
+                        <th>Capacity</th>
+                        <th>Booked Seats</th>
+                        <th>Remaining Seats</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bus : ${buses}">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <p th:text="${bus.getBusId()}" class="fw-normal mb-1"></p>
+                            </div>
+                        </td>
+                        <td>
+                            <p th:text="${bus.getBusNumberPlate()}" class="fw-normal mb-1"></p>
+                        </td>
+                        <td>
+                            <p th:text="${bus.getBusCapacity()}" class="fw-normal mb-1"></p>
+                        </td>
+                        <td>
+                            <p th:text="${bus.getBookedSeats()}" class="fw-normal mb-1"></p>
+                        </td>
+                        <td>
+                            <p th:text="${bus.getRemainingSeats()}" class="fw-normal mb-1"></p>
+                        </td>
+                        <td>
+                            <span>
+                                <a th:href="@{/admin/updateBus (busId=${bus.getBusId()})}">
+                                    <button type="button" class="btn btn-primary btn-floating"
+                                        data-mdb-ripple-color="dark">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                &nbsp;&nbsp;
+                                <a th:href="@{/admin/removeBus (busId=${bus.getBusId()})}"><button type="button" class="btn btn-danger btn-floating" data-mdb-ripple-color="dark">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button></a>
+                            </span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- MDB -->
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>

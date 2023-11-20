@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Booking And Services</title>
+<link rel="stylesheet" href="/css/stylesbook.css"
+	th:href="@{/css/stylesbook.css}">
+<script src="https://kit.fontawesome.com/dbed6b6114.js"
+	crossorigin="anonymous"></script>
+<!-- Font Awesome -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet" />
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- Container wrapper -->
+		<div class="container-fluid">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="/img/nribms-high-resolution-logo-black-on-transparent-background.png"
+					height="35" alt="MDB Logo" loading="lazy" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/admin/panel}">Home</a></li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper Right elements -->
+			<div class="d-flex align-items-center">
+				<!-- Notifications -->
+				<div class="dropdown">
+					<a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#"
+						id="navbarDropdownMenuLink" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <i
+						class="fas fa-bell"></i> <span
+						class="badge rounded-pill badge-notification bg-danger">1</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="#">Another news</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a></li>
+					</ul>
+				</div>
+				<!-- Avatar -->
+				<div class="dropdown">
+					<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+						href="#" id="navbarDropdownMenuAvatar" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <img
+						src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+						class="rounded-circle" height="25"
+						alt="Black and White Portrait of a Man" loading="lazy" />
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuAvatar">
+						<li><a class="dropdown-item" th:href="@{/user/profile}">My
+								profile</a></li>
+
+						<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
+	<header id="body-header">
+		<div class="container">
+			<div class="d-flex justify-content-center">
+				<h1 class="display-4">All Bookings</h1>
+			</div>
+			<p>
+				Filter: <select id="statusId" class="browser-default custom-select"
+					name="status">
+					<option value="">Select Booking Status</option>
+					<option
+						th:each="statusOpt : ${T(com.nri.busmanagement.model.Status).values()}"
+						th:value="${statusOpt}" th:text="${statusOpt}"></option>
+					<option value="All">All</option>
+				</select>
+			</p>
+			<div class="contentForm content d-flex justify-content-center">
+				<form th:object="${lbook}" th:if="${lbook} != null">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<td>Booking Id</td>
+								<td>Schedule Id</td>
+								<td>Bus Id</td>
+								<td>Employee Id</td>
+								<td>Bus Number</td>
+								<td>Source</td>
+								<td>Destination</td>
+								<td>Travel Date</td>
+								<td>Arrival Time</td>
+								<td>Departure Time</td>
+								<td>Fare Amount</td>
+								<td>Booking Status</td>
+							</tr>
+						</thead>
+						<tbody id="myTable">
+							<tr th:each="book : ${lbook}">
+								<td>
+									<p th:text="${book.getBookingId()}" class="fw-normal mb-1"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getScheduleId()}"
+										class="fw-normal mb-1"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getBusobj().getBusId()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpobj().getempEmail()}"></p>
+								</td>
+								<td>
+									<p
+										th:text="${book.getScheduleobj().getBusobj().getBusNumberPlate()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpSrc()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpDst()}"></p>
+								</td>
+								<td>
+									<p
+										th:text="${book.getScheduleobj().getStartDate().toString().substring(0,10)}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getStartTime()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getEndTime()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getFareAmount()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getBookStatus()}"></p>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
+			integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc="
+			crossorigin="anonymous"></script>
+
+		<script>
+			$(document)
+					.ready(
+							function() {
+								$("#statusId")
+										.change(
+												function(event) {
+													console
+															.log(event.target.value)
+													let currentStatus = event.target.value;
+													window.location.href = "/admin/viewAllBooking?status="
+															+ currentStatus;
+												})
+							})
+		</script>
+
+		<!-- MDB -->
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>
+
+
+<
+<!-- !DOCTYPE html>
+<html>
+
+<head>
+<title>Booking And Services</title>
+<link rel="stylesheet" href="/css/stylesbook.css"
+	th:href="@{/css/stylesbook.css}">
+<script src="https://kit.fontawesome.com/dbed6b6114.js"
+	crossorigin="anonymous"></script>
+Font Awesome
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet" />
+Google Fonts
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+MDB
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	 Navbar
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		Container wrapper
+		<div class="container-fluid">
+			Toggle button
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			Collapsible wrapper
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				Navbar brand
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="/img/nribms-high-resolution-logo-black-on-transparent-background.png"
+					height="35" alt="MDB Logo" loading="lazy" />
+				</a>
+				Left links
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/admin/panel}">Home</a></li>
+				</ul>
+				Left links
+			</div>
+			Collapsible wrapper
+
+			Right elements
+			<div class="d-flex align-items-center">
+				Notifications
+				<div class="dropdown">
+					<a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#"
+						id="navbarDropdownMenuLink" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <i
+						class="fas fa-bell"></i> <span
+						class="badge rounded-pill badge-notification bg-danger">1</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="#">Another news</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a></li>
+					</ul>
+				</div>
+				Avatar
+				<div class="dropdown">
+					<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+						href="#" id="navbarDropdownMenuAvatar" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <img
+						src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+						class="rounded-circle" height="25"
+						alt="Black and White Portrait of a Man" loading="lazy" />
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuAvatar">
+						<li><a class="dropdown-item" th:href="@{/user/profile}">My
+								profile</a></li>
+
+						<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			Right elements
+		</div>
+		Container wrapper
+	</nav>
+	Navbar
+	<header id="body-header">
+		<div class="container">
+			<div class="d-flex justify-content-center">
+				<h1 class="display-4">All Bookings</h1>
+			</div>
+			<p>Filter: <select id="statusId" class="browser-default custom-select" name="status">
+				<option value=""> Select Booking Status </option>
+				<option
+					th:each="statusOpt : ${T(com.nri.busmanagement.model.Status).values()}"
+					th:value="${statusOpt}" th:text="${statusOpt}"></option>
+				<option value="All">All</option>
+			</select>
+			</p>
+			<div class="contentForm content d-flex justify-content-center">
+				<form th:object="${lbook}" th:if="${lbook} != null">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<td>Booking Id</td>
+								<td>Bus Id</td>
+								<td>Employee Id</td>
+								<td>Bus Number</td>
+								<td>Source</td>
+								<td>Destination</td>
+								<td>Travel Date</td>
+								<td>Arrival Time</td>
+								<td>Departure Time</td>
+								<td>Fare Amount</td>
+								<td>Booking Status</td>
+							</tr>
+						</thead>
+						<tbody id="myTable">
+							<tr th:each="book : ${lbook}">
+								<td>
+									<p th:text="${book.getBookingId()}" class="fw-normal mb-1"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getBusobj().getBusId()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpobj().getempEmail()}"></p>
+								</td>
+								<td>
+									<p
+										th:text="${book.getScheduleobj().getBusobj().getBusNumberPlate()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpSrc()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getEmpDst()}"></p>
+								</td>
+								<td>
+									<p
+										th:text="${book.getScheduleobj().getStartDate().toString().substring(0,10)}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getStartTime()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getScheduleobj().getEndTime()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getFareAmount()}"></p>
+								</td>
+								<td>
+									<p th:text="${book.getBookStatus()}"></p>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+
+
+		MDB
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.slim.js"
+	integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc="
+	crossorigin="anonymous"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("#statusId")
+								.change(
+										function(event) {
+											console.log(event.target.value)
+											let currentStatus = event.target.value;
+											window.location.href = "/admin/viewAllBooking?status="
+													+ currentStatus;
+										})
+					})
+</script>
+
+</html> -->

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Schedule</title>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+<!-- Font Awesome -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet" />
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<!-- navbar start -->
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- Container wrapper -->
+		<div class="container-fluid">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="./img/nribms-high-resolution-logo-black-on-transparent-background.png"
+					height="35" alt="MDB Logo" loading="lazy" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">Dashboard</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Projects</a>
+					</li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->
+			<div class="d-flex align-items-center">
+				<!-- Notifications -->
+				<div class="dropdown">
+					<a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#"
+						id="navbarDropdownMenuLink" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <i
+						class="fas fa-bell"></i> <span
+						class="badge rounded-pill badge-notification bg-danger">1</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="#">Another news</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a>
+						</li>
+					</ul>
+				</div>
+				<!-- Avatar -->
+				<div class="dropdown">
+					<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+						href="#" id="navbarDropdownMenuAvatar" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <img
+						src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+						class="rounded-circle" height="25"
+						alt="Black and White Portrait of a Man" loading="lazy" />
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuAvatar">
+						<li><a class="dropdown-item" href="#">My profile</a></li>
+						<li><a class="dropdown-item" href="#">Settings</a></li>
+						<li><a class="dropdown-item" th:href="@{/}">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
+	<!-- navbar end -->
+
+
+	<div class="container">
+		<h1 class="display-3 d-flex justify-content-center mt-4 mb-2">Add
+			Schedule</h1>
+		<div class="content d-flex justify-content-center">
+			<div class="w-50 p-3">
+				<div class="content d-flex justify-content-center"></div>
+				<form action="#" th:action="@{/admin/createSchedule}" method="POST"
+					th:object="${scheduleModel}">
+					<div class="form-outline mb-4">
+						<input type="date" class="form-control" name="startDate"
+							id="startDate" th:field="*{startDate}" requried /> <label
+							class="form-label" for="form6Example5">Date</label>
+					</div>
+
+					<div class="form-outline mb-4">
+						<input type="time" class="form-control" name="startTime"
+							id="startTime" th:field="*{startTime}" requried /> <label
+							class="form-label" for="form6Example4">Departure Time</label>
+					</div>
+
+					<div class="form-outline mb-4">
+						<input type="time" class="form-control" name="endTime"
+							id="endTime" th:field="*{endTime}" requried /> <label
+							class="form-label" for="form6Example4">Arrival Time</label>
+					</div>
+
+					<div class="form-outline mb-4">
+						<input type="number" class="form-control" name="fareAmount"
+							id="fareAmount" th:field="*{fareAmount}" /> <label
+							class="form-label" for="form6Example5">Fare</label>
+					</div>
+
+					<div class="form-outline mb-4">
+						<label for="buses">Choose a Bus:</label> <select name="buses"
+							id="buses" class="browser-default custom-select"
+							th:field="*{busobj.busNumberPlate}">
+							<option class="bus" th:each="bus: ${buses}"
+								th:text="${bus.getBusNumberPlate()}"
+								th:value="${bus.getBusNumberPlate()}" th:busId="${bus.busId}"></option>
+						</select> <label for="drivers">Choose Driver:</label> <select name="driver"
+							id="driver" class="browser-default custom-select"
+							th:field="*{driverobj.driverName}">
+							<option class="drv" th:each="driver : ${drivers}"
+								th:text="${driver.getDriverName()}"
+								th:value="${driver.getDriverName()}"
+								th:drvId="${driver.driverEmail}"></option>
+						</select> <label for="conductors">Choose Conductor:</label> <select
+							name="conductors" class="browser-default custom-select"
+							id="conductors" th:field="*{condobj.condName}">
+							<option class="cnd" th:each="conductor: ${conductors}"
+								th:text="${conductor.getCondName()}"
+								th:value="${conductor.getCondName()}"
+								th:condId="${conductor.condEmail}"></option>
+						</select> <label for="routes">Choose a Route:</label> <select name="routes"
+							id="routes" class="browser-default custom-select"
+							th:field="*{routeobj.routeName}">
+							<option class="route" th:each="route: ${routes}"
+								th:text="${route.getRouteName()}"
+								th:value="${route.getRouteName()}" th:routeId="${route.routeId}"></option>
+						</select>
+					</div>
+
+					<!-- Submit button -->
+					<button type="submit" class="btn btn-primary btn-block mb-4" onclick="addSchedule()">Add
+						Schedule</button>
+				</form>
+			</div>
+
+			<script>
+				function addSchedule() {
+					var startDate = document.getElementById("startDate").value;
+					var startTime = document.getElementById("startTime").value;
+					var endTime = document.getElementById("endTime").value;
+					var fareAmount = document.getElementById("fareAmount").value;
+					var drv = document.getElementsByClassName("drv");
+					var cond = document.getElementsByClassName("cnd");
+					var bus = document.getElementsByClassName("bus");
+					var route = document.getElementsByClassName("route");
+
+					var selBusId = 0;
+					var selDrvId = 0;
+					var selCondId = 0;
+					var selRouteId = 0;
+
+					for (let i = 0; i < bus.length; i++) {
+						if (bus[i].selected) {
+							selBusId = bus[i].getAttribute("busId");
+						}
+					}
+
+					for (let i = 0; i < drv.length; i++) {
+						if (drv[i].selected) {
+							selDrvId = drv[i].getAttribute("drvId");
+						}
+					}
+
+					for (let i = 0; i < cond.length; i++) {
+						if (cond[i].selected) {
+							selCondId = cond[i].getAttribute("condId");
+						}
+					}
+
+					for (let i = 0; i < route.length; i++) {
+						if (route[i].selected) {
+							selRouteId = route[i].getAttribute("routeId");
+							console.log(selRouteId);
+						}
+					}
+					
+					console.log(typeof startTime)
+					
+					var startTime = startTime.replace(":", ".");
+					var endTime = endTime.replace(":", ".");
+					
+					console.log(startTime);
+					console.log(typeof startTime);
+
+					var schd = {
+						"startDate" : startDate,
+						"startTime" : startTime,
+						"endTime" : endTime,
+						"fareAmount" : fareAmount,
+						"driverId" : selDrvId,
+						"condId" : selCondId,
+						"busId" : selBusId,
+						"routeId" : selRouteId
+					}
+
+					fetch("/admin/createSchedule", {
+
+						method : "POST",
+						headers : {
+							'Content-Type' : 'application/json'
+						},
+						body : JSON.stringify(schd)
+					});
+
+					console.log(startDate);
+
+				}
+			</script>
+		</div>
+
+		<!-- MDB -->
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>NRI Fintech BMS</title>
+<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+<script src="https://kit.fontawesome.com/dbed6b6114.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="icon" href="images1/logo.png" type="image/png">
+</head>
+<body>
+	<div class="wrapper">
+		<nav>
+			<input type="checkbox" id="show-search"> <input
+				type="checkbox" id="show-menu"> <label for="show-menu"
+				class="menu-icon"><i class="fas fa-bars"></i></label>
+			<div class="content">
+				<div class="logo">
+					<a href="#">NRI BMS</a>
+				</div>
+				<ul class="links">
+					<li><a href="#" th:href="@{/user/home}"><i class="fas fa-home"></i>Home</a></li>
+					<li><a href="#services"><i class="fas fa-hotel"></i>About</a></li>
+					<li><a href="#" class="desktop-link"><i
+							class="fas fa-user"></i>My Account</a> <input type="checkbox"
+						id="show-features"> <label for="show-features"><i
+							class="fas fa-chevron-circle-down"></i>My Account</label>
+						<ul>
+							<li><a href="/loginPage" th:href="@{/loginPage}"><i class="fas fa-sign-in-alt"
+									aria-hidden="true"></i>Login</a></li>
+							<li><a href="profile.html" th:href="@{/user/profile}"><i class="fas fa-user"></i>My
+									Profile</a></li>
+							<li action><a href="/logout"><i class="fas fa-sign-out-alt"
+									aria-hidden="true"></i>Log out</a></li>
+							<li><a href="contact.html" th:href="@{/user/contact}"><i
+									class="fas fa-phone-square-alt"></i>Contact Us</a></li>
+						</ul></li>
+					<li><a href="book.html" th:href="@{/user/bookingDash}"><i class="fas fa-ticket-alt"></i>Bookings</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<main>
+		<section class="home">
+			<div id="name-social-container" class="home-container">
+				<div class="text-center">
+					<h1 class="display-1" id="cName">Welcome to NRIFT BUS</h1>
+					<button onclick="window.location.href = '/user/getBuses';"
+						class="button">
+						<span>Book Here</span>
+					</button>
+				</div>
+		</section>
+		<section class="services sec-width" id="services">
+			<div class="title">
+				<h2>services</h2>
+			</div>
+			<div class="services-container"></div>
+		</section>
+
+
+		footer
+		<footer class="footer">
+			<div class="footer-container">
+				<div>
+					<h2>About Us</h2>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Itaque sapiente mollitia doloribus provident? Eos quisquam aliquid
+						vel dolorum, impedit culpa.</p>
+
+				</div>
+
+				<div>
+					<h2>Useful Links</h2>
+					<a href="#">Blog</a> <a href="#rooms">Rooms</a> <a href="#">Subscription</a>
+					<a href="#">Gift Card</a>
+				</div>
+
+				<div>
+					<h2>Privacy</h2>
+					<a href="#">Career</a> <a href="#about">About Us</a> <a
+						href="contact.html">Contact Us</a> <a href="/services">Services</a>
+				</div>
+
+				<div>
+					<h2>Have A Question</h2>
+					<div class="contact-item">
+						<span> <i class="fas fa-map-marker-alt"></i>
+						</span> <span> 203 Fake St.Mountain View, San Francisco,
+							California, USA </span>
+					</div>
+					<div class="contact-item">
+						<span> <i class="fas fa-phone-alt"></i>
+						</span> <span> +84545 37534 48 </span>
+					</div>
+					<div class="contact-item">
+						<span> <i class="fas fa-envelope"></i>
+						</span> <span> info@domain.com </span>
+					</div>
+				</div>
+			</div>
+		</footer>
+		end of footer
+	</main>
+</body>
+</html>
+ -->
+ 
+ <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRIBMS</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    Font Awesome
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    Google Fonts
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    MDB
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    Navbar
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        Container wrapper
+        <div class="container">
+            Navbar brand
+            <a class="navbar-brand me-2" href="#">
+                <img src="@{/img/nribms-high-resolution-logo-black-on-transparent-background.png}" height="35"
+                    alt="NRI BMS" loading="lazy" style="margin-top: -1px;" />
+            </a>
+
+            Toggle button
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            Collapsible wrapper
+            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                Left links
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/bookingDash}">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/contact}">Contact Us</a>
+                    </li>
+                </ul>
+                Left links
+
+                <div class="d-flex align-items-center">
+                    <a th:href="@{/loginPage}">
+                        <button type="button" class="btn btn-primary me-3">
+                            Login
+                        </button>
+                    </a>
+                </div>
+            </div>
+            Collapsible wrapper
+        </div>
+        Container wrapper
+    </nav>
+    Navbar
+    <div class="container">
+    	<img alt="" src="data:image/png;base64,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">
+    </div>
+
+    <div class="container">
+        <a th:href="@{/user/book}"><button type="button" class="btn btn-outline-primary btn-rounded" id="reserve-btn"
+            data-mdb-ripple-color="dark">Reserve a Bus</button></a>
+    </div>
+
+    MDB
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Management System</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body style="overflow: hidden;">
+    <!-- navbar start -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand me-2" href="#">
+                    <img src="/img/nribms-high-resolution-logo-black-on-transparent-background.png" height="35"
+                        alt="NRI BMS" loading="lazy" style="margin-top: -1px;" />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/home}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/bookingDash}">Bookings</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" th:href="@{/user/profile}">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <!-- navbar end -->
+
+    <div class="container">
+
+    </div>
+    <div class="container" style="margin: 20rem 35rem;">
+        <a th:href="@{/user/getBuses}"><button type="button" class="btn btn-outline-primary btn-rounded" id="reserve-btn"
+            data-mdb-ripple-color="dark">Reserve a Bus</button></a>
+    </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>

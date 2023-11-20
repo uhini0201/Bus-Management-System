@@ -1,0 +1,220 @@
+<!-- <!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="/css/styles2.css" th:href="@{/css/styles2.css}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container">
+		<div class="title">Add Pick Up Points</div>
+		<div class="content">
+			<form action="#" th:action="@{/admin/updateLocation}" method="POST" th:object="${locModel}">
+				<div class="social-icons">
+					<div class="user-details">
+						<div class="input-box">
+							<label class="details">Bus Stop Name</label>
+							<input type="text"
+								name="busstopname" th:field="*{addressobj.busStopName}" placeholder="Enter Bus Stop name" required>
+						</div>
+						<div class="input-box">
+							<label class="details">Street Name</label>
+							<input type="text"
+								name="streetname" th:field="*{addressobj.streetName}" placeholder="Enter Street Name" required>
+						</div>
+						<div class="input-box">
+							<label class="details">Land Mark</label>
+							<input type="text"
+								name="landmark" th:field="*{addressobj.landMark}" placeholder="Enter Land Mark" required>
+						</div>
+						<div class="input-box">
+							<label class="details">Pin Code</label>
+							<input type="text"
+								name="pincode" th:field="*{addressobj.pinCode}" placeholder="Enter Pin Code" required>
+						</div>
+						<div class="input-box">
+							<label class="details">Arrival Time</label>
+							<input type="text"
+								name="arrivaltime" th:field="*{arrivalTime}" placeholder="Enter Arrival Time" required>
+						</div>
+						<div class="input-box">
+							<label class="details">Departure Time</label>
+							<input type="text"
+								name="departuretime" th:field="*{departureTime}" placeholder="Enter Departure Time" required>
+						</div>
+					</div>
+
+					<div class="button">
+						<input type="submit" value="Update">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
+ -->
+ 
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Location</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- navbar start -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img src="./img/nribms-high-resolution-logo-black-on-transparent-background.png" height="35"
+                        alt="MDB Logo" loading="lazy" />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/panel">Home</a>
+                    </li>
+
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <!-- navbar end -->
+
+
+    <div class="container">
+        <h1 class="display-3 d-flex justify-content-center mt-4 mb-2">Update Location</h1>
+        <div class="content d-flex justify-content-center">
+            <div class="w-50 p-3">
+                <form action="#" th:action="@{/admin/updateLocation}" method="POST" th:object="${locModel}">
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" readonly="readonly" id="form6Example5" class="form-control" th:field="*{locationId}"
+                            name="busstopname" required />
+                        <label class="form-label" for="form6Example5">Bus Stop</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example5" class="form-control" th:field="*{addressobj.busStopName}"
+                            name="busstopname" required />
+                        <label class="form-label" for="form6Example5">Bus Stop</label>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example5" class="form-control" name="streetname"
+                            th:field="*{addressobj.streetName}" />
+                        <label class="form-label" for="form6Example5">Street Name</label>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example5" class="form-control" name="landmark"
+                            th:field="*{addressobj.landMark}" placeholder="Enter Land Mark" required />
+                        <label class="form-label" for="form6Example5">Landmark</label>
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="form-outline mb-4">
+                        <input type="number" id="form6Example6" class="form-control" name="pincode"
+                            th:field="*{addressobj.pinCode}" placeholder="Enter Pin Code" required />
+                        <label class="form-label" for="form6Example6">Pincode</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example6" class="form-control" name="arrivaltime"
+                            th:field="*{arrivalTime}" placeholder="Enter Arrival Time" required />
+                        <label class="form-label" for="form6Example6">Arrival Time</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form6Example6" class="form-control" name="departuretime"
+                            th:field="*{departureTime}" placeholder="Enter Departure Time" required />
+                        <label class="form-label" for="form6Example6">Departure Time</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Add Location</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MDB -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</body>
+
+</html>

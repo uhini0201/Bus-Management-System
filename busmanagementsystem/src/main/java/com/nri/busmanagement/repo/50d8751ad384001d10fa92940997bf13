@@ -1,0 +1,15 @@
+package com.nri.busmanagement.repo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.nri.busmanagement.model.Route;
+
+public interface RouteRepository extends JpaRepository<Route, Long> {
+	
+	@Query("SELECT routeId FROM Route WHERE locationobj.locationId=:locId")
+	public Optional<Route> getRouteFromLocation(@Param("locId") int locId);
+}

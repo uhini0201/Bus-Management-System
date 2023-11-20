@@ -1,0 +1,279 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/styles2.css" th:href="@{/css/styles2.css}">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<title>location Management Dashboard</title>
+</head>
+<body>
+	<div class="container">
+		<h1>location Management Dashboard</h1>
+		<div>
+			<label for="routeName">Route Name</label>
+			<input type="text" name="routeName" id="routeName"/>
+		</div>
+		<div class="contentForm">
+			<form action="#" th:action="@{/admin/createRoute}" method="POST"
+				th:object="${locations}">
+				<table th:if="${locations} != null"
+					class="table table-bordered table-striped" id="locTable">
+					<thead>
+						<tr>
+							<td>Bus Stop Name</td>
+							<td>Street Name</td>
+							<td>Landmark</td>
+							<td>Pin-code</td>
+							<td>Add</td>
+						</tr>
+					</thead>
+					<tbody id="myTable">
+						<tr th:each="location : ${locations}">
+							<td th:text="${location.getAddressobj().getBusStopName()}" th:value="${location.getAddressobj().getBusStopName()}"></td>
+							<td th:text="${location.getAddressobj().getStreetName()}" th:value="${location.getAddressobj().getStreetName()}"></td>
+							<td th:text="${location.getAddressobj().getLandMark()}" th:value="${location.getAddressobj().getLandMark()}"></td>
+							<td th:text="${location.getAddressobj().getPinCode()}" th:value="${location.getAddressobj().getPinCode()}"></td>
+							<td><input type="checkbox" th:value="${location.getLocationId()}"
+								th:href="@{/getLocation (locationId=${location.getLocationId()})}" class="checkLoc"></td>
+						</tr>
+						<td><input type="button" onclick="addRoute()" value="Add"></td>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+	
+	<script>
+		function addRoute() {
+			var tblLoc = document.getElementById("locTable");
+			var tr = tblLoc.getElementsByTagName("tr");
+			var data;
+			var listOfBusStopNames = [];
+			var chk = document.getElementsByClassName("checkLoc");
+			
+			console.log(chk);
+			
+			var route;
+			
+			for (let i=1; i<tr.length-1; i++) {
+				data = tr[i].getElementsByTagName("td");
+				if (chk[i-1].checked == true) {
+					listOfBusStopNames.push(chk[i-1].value);
+				}
+			}
+			
+			var route = {
+					"pickUpPoints": listOfBusStopNames,
+					"routeName": document.getElementById("routeName").value
+			}
+			
+			fetch("/admin/createRoute",
+					{
+						method: "POST",
+						headers: {
+								'Content-Type': 'application/json'		
+						},
+						body: JSON.stringify(route)
+					});
+			
+			console.log(route);
+		}
+	</script>
+	
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Route</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand me-2" href="#">
+                    <img src="./img/nribms-high-resolution-logo-black-on-transparent-background.png" height="35"
+                        alt="NRI BMS" loading="lazy" style="margin-top: -1px;" />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <div class="container">
+        <h1 class="display-3 d-flex justify-content-center mt-4 mb-2">Add Location</h1>
+        <div class="content d-flex justify-content-center">
+            <form action="#" th:action="@{/admin/createRoute}" method="POST" th:object="${locations}">
+                <div>
+                    <label for="routeName">Route Name</label>
+                    <input type="text" name="routeName" id="routeName" />
+                </div>
+                <table id="locTable" class="table align-middle mb-0 bg-white" th:if="${locations} != null">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Bus Stop</th>
+                            <th>Street Name</th>
+                            <th>Landmark</th>
+                            <th>Pincode</th>
+                            <th>Add</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        <tr th:each="location : ${locations}">
+                            <td>
+                                <p th:text="${location.getAddressobj().getBusStopName()}"
+                                    th:value="${location.getAddressobj().getBusStopName()}" class="fw-normal mb-1"></p>
+                            </td>
+                            <td>
+                                <p th:text="${location.getAddressobj().getStreetName()}"
+                                    th:value="${location.getAddressobj().getStreetName()}" class="fw-normal mb-1"></p>
+                            </td>
+                            <td>
+                                <p th:text="${location.getAddressobj().getLandMark()}"
+                                    th:value="${location.getAddressobj().getLandMark()}" class="fw-normal mb-1"></p>
+                            </td>
+                            <td>
+                                <p th:text="${location.getAddressobj().getPinCode()}"
+                                    th:value="${location.getAddressobj().getPinCode()}" class="fw-normal mb-1"></p>
+                            </td>
+                            <td>
+                                <div>
+                                    <input class="form-check-input checkLoc" type="checkbox" id="checkboxNoLabel"
+                                        th:href="@{/getLocation (locationId=${location.getLocationId()})}"
+                                        th:value="${location.getLocationId()}" aria-label="..." />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="btn btn-primary" onclick="addRoute()" value="Add"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function addRoute() {
+            var tblLoc = document.getElementById("locTable");
+            var tr = tblLoc.getElementsByTagName("tr");
+            var data;
+            var listOfBusStopNames = [];
+            var chk = document.getElementsByClassName("checkLoc");
+
+            console.log(chk);
+
+            var route;
+
+            for (let i = 1; i < tr.length - 1; i++) {
+                data = tr[i].getElementsByTagName("td");
+                if (chk[i - 1].checked == true) {
+                    listOfBusStopNames.push(chk[i - 1].value);
+                }
+            }
+
+            var route = {
+                "pickUpPoints": listOfBusStopNames,
+                "routeName": document.getElementById("routeName").value
+            }
+
+            fetch("/admin/createRoute",
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(route)
+                });
+
+            console.log(route);
+        }
+    </script>
+</body>
+
+</html>
